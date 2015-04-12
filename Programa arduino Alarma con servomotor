@@ -1,0 +1,105 @@
+#define NOTE_C8  4186
+#define NOTE_A7  3520
+#include<Servo.h>
+Servo spaceapps;
+int val;
+int cont;
+int con2;
+char var;
+int k=1;
+int s;
+int pos;
+int motor=31;
+void setup()
+{
+  spaceapps.attach(3);
+  Serial.begin(9600);
+  pinMode(motor,OUTPUT);
+}
+void loop()
+{
+    s=1;
+    k=0;
+    con2=0;
+    cont = cont+1;
+    tone(47, NOTE_A7,1000);
+    delay(50);
+    noTone(47);
+    delay(1000);
+    switch(cont)
+    {
+      case 1:
+        for(pos = 0; pos <= 90; pos += 1) 
+        {                                 
+          spaceapps.write(pos);             
+        delay(15);                      
+        } 
+        for(pos = 90; pos>=0; pos-=1)     
+        {                                
+          spaceapps.write(pos);              
+          delay(15);                 
+        } 
+      break;
+      case 2:
+        digitalWrite(motor,HIGH);
+        delay(1500);
+        digitalWrite(motor,LOW);
+      break;
+      case 3:
+      break;
+      case 4:
+        digitalWrite(motor,HIGH);
+        delay(1500);
+        digitalWrite(motor,LOW);
+      break;
+      case 5:
+        digitalWrite(motor,HIGH);
+        delay(3000);
+        digitalWrite(motor,LOW);
+      break;
+      case 6:
+        for(pos = 60; pos <= 80; pos += 1) 
+        {                                 
+          spaceapps.write(pos);             
+        delay(15);                      
+        } 
+        for(pos = 80; pos>=60; pos-=1)     
+        {                                
+          spaceapps.write(pos);              
+          delay(15);                 
+        } 
+      break;
+      case 7:
+        spaceapps.write(120);
+      break;
+      case 8:
+        digitalWrite(motor,HIGH);
+        delay(3000);
+        digitalWrite(motor,LOW);
+      break;
+      case 9:
+        spaceapps.write(75);
+        digitalWrite(motor,HIGH);
+        delay(4000);
+        digitalWrite(motor,LOW);
+      break;
+      case 10:
+        spaceapps.write(0);
+      break;
+    }
+    while(cont > 10)
+    {
+      tone(47, NOTE_C8,1000);
+      delay(50);
+      noTone(47);
+      delay(50);
+      con2=con2+1;
+      if(con2 > 50){
+        cont=0;
+      }
+      else{
+        cont=cont;
+      }
+      delay(50);
+    }
+}
