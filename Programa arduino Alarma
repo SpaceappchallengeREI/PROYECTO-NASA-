@@ -1,0 +1,73 @@
+/*# PROYECTO-NASA-
+Programa Arduino para Alarmas y posicionamiento de REI*/
+#define NOTE_C8  4186
+#define NOTE_A7  3520
+#include<Servo.h>
+Servo spaceapps;
+int val;
+int cont;
+int con2;
+
+void setup()
+{
+  spaceapps.attach(3);
+}
+void loop()
+{
+    con2=0;
+    cont = cont+1;
+    tone(47, NOTE_A7,1000);
+    delay(50);
+    noTone(47);
+    delay(1000);
+    switch(cont)
+    {
+      case 1:
+      spaceapps.write(20);
+      break;
+      case 2:
+      spaceapps.write(35);
+      break;
+      case 3:
+      spaceapps.write(5);
+      break;
+      case 4:
+      spaceapps.write(45);
+      break;
+      case 5:
+      spaceapps.write(90);
+      break;
+      case 6:
+      spaceapps.write(15);
+      break;
+      case 7:
+      spaceapps.write(120);
+      break;
+      case 8:
+      spaceapps.write(135);
+      break;
+      case 9:
+      spaceapps.write(75);
+      break;
+      case 10:
+      spaceapps.write(0);
+      break;
+    }
+    
+    while(cont > 10)
+    {
+    tone(47, NOTE_C8,1000);
+    delay(50);
+    noTone(47);
+    delay(50);
+    con2=con2+1;
+    if(con2 > 50)
+    {
+      cont=0;
+    }
+    else{
+      cont=cont;
+    }
+    delay(50);
+    }
+}
