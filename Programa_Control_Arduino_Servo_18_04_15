@@ -1,0 +1,140 @@
+/*
+  PROGRAMA PARA PROYECTO REI
+  MEXICO, MAZATLÁN SINALOA, CREADO POR:
+  JOSE VALDEZ
+  NAHUM CHAVARRIA
+  ALDO ROCHIN
+*/
+#include <Servo.h> 
+#define NOTE_C8  4186
+
+Servo spaceapps;
+Servo spaceapps1;
+char r;
+int c;
+int v;
+int pos;
+
+void setup() {
+  Serial.begin(115200);
+  c=0;
+  pinMode(13,OUTPUT);
+  spaceapps.attach(9);
+  spaceapps1.attach(3);
+  pos=0;
+}
+
+void loop() 
+{
+
+  r=Serial.read();                  //Lectura de dato  
+  
+      switch(r)                         //CASO
+      {
+        case'a':                        //Caso a servo1
+        digitalWrite(13,HIGH);          //Indicador
+        delay(10);                      //Retardo
+        spaceapps.write(c);            //Escritura del valor de c (contador ascendente)
+        // analogWrite(9,c);
+        if(c>=170){c=170;}else{c=c+1;}    //Parametros de parada valor maximo del servomotor
+        break;                          //Break
+        case's':                        //Casi b servo1
+        digitalWrite(13,LOW); 
+        delay(10);    //Indicador
+        spaceapps.write(c);               //Escritura del valor de c(contador descendente)
+        //analogWrite(9,c);
+        if(c<=1){c=1;}else{c=c-1;}        //Parametros de para de valor minimo del servomotor
+        break;                          //Break
+        case'q':                        //Caso q servo2
+        digitalWrite(12,HIGH);          //indicador
+        delay(10);                      //Retardo
+        spaceapps1.write(v);
+        //analogWrite(3,v);               //Escritura del valor de v 
+        if(v>=170){v=170;}else{v=v+1;}    //Parametros
+        break;                          //Break
+        case'w':                        //Caso w servo2
+        digitalWrite(12,LOW);           //Indicador
+        delay(10);                      //Retardo
+        spaceapps1.write(v);
+        //analogWrite(3,v);               //Escritura del valor
+        if(v<=1){v=1;}else{v=v-1;}        //Parametros
+        break;                          //Break
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////RUTINAS/CLICLOS////////////////////////////////////////////////////////////////
+                                                  case'h':                        //Area 1
+                                                  for(pos = 0; pos <= 45; pos += 1) // goes from 0 degrees to 180 degrees 
+                                                  {                                  // in steps of 1 degree 
+                                                    spaceapps.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                    delay(15);                       // waits 15ms for the servo to reach the position 
+                                                  } 
+                                                  for(pos = 70; pos>=20; pos-=1)     // goes from 180 degrees to 0 degrees 
+                                                  {                                
+                                                    spaceapps1.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                    delay(15);                       // waits 15ms for the servo to reach the position 
+                                                  } 
+                                                  for(pos = 0; pos <= 45; pos += 1) // goes from 0 degrees to 180 degrees 
+                                                  {                                  // in steps of 1 degree 
+                                                    spaceapps1.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                    delay(15);                       // waits 15ms for the servo to reach the position 
+                                                  } 
+                                                  for(pos = 70; pos>=20; pos-=1)     // goes from 180 degrees to 0 degrees 
+                                                  {                                
+                                                    spaceapps.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                    delay(15);                       // waits 15ms for the servo to reach the position 
+                                                  } 
+                                                  break;                          //Break
+        
+                                                                                          case'j':                        //Area 2
+                                                                                          for(pos = 45; pos <= 90; pos += 1) // goes from 0 degrees to 180 degrees 
+                                                                                          {                                  // in steps of 1 degree 
+                                                                                            spaceapps.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                                                            delay(15);                       // waits 15ms for the servo to reach the position 
+                                                                                          } 
+                                                                                          for(pos = 50; pos>=0; pos-=1)     // goes from 180 degrees to 0 degrees 
+                                                                                          {                                
+                                                                                            spaceapps1.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                                                            delay(15);                       // waits 15ms for the servo to reach the position 
+                                                                                          } 
+                                                                                          for(pos = 10; pos <= 30; pos += 1) // goes from 0 degrees to 180 degrees 
+                                                                                          {                                  // in steps of 1 degree 
+                                                                                            spaceapps1.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                                                            delay(15);                       // waits 15ms for the servo to reach the position 
+                                                                                          } 
+                                                                                          for(pos = 180; pos>=0; pos-=1)     // goes from 180 degrees to 0 degrees 
+                                                                                          {                                
+                                                                                            spaceapps.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                                                            delay(15);                       // waits 15ms for the servo to reach the position 
+                                                                                          } 
+                                                                                          break;                          //Break
+                                                                                                                                 case'k':                        //Area 1
+                                                                                                                                  for(pos = 0; pos <= 120; pos += 1) // goes from 0 degrees to 180 degrees 
+                                                                                                                                  {                                  // in steps of 1 degree 
+                                                                                                                                    spaceapps.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                                                                                                    delay(15);                       // waits 15ms for the servo to reach the position 
+                                                                                                                                  } 
+                                                                                                                                  for(pos = 100; pos>=20; pos-=1)     // goes from 180 degrees to 0 degrees 
+                                                                                                                                  {                                
+                                                                                                                                    spaceapps.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                                                                                                    delay(15);                       // waits 15ms for the servo to reach the position 
+                                                                                                                                  } 
+                                                                                                                                  for(pos = 0; pos <= 45; pos += 1) // goes from 0 degrees to 180 degrees 
+                                                                                                                                  {                                  // in steps of 1 degree 
+                                                                                                                                    spaceapps1.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                                                                                                    delay(15);                       // waits 15ms for the servo to reach the position 
+                                                                                                                                  } 
+                                                                                                                                  for(pos = 70; pos>=20; pos-=1)     // goes from 180 degrees to 0 degrees 
+                                                                                                                                  {                                
+                                                                                                                                    spaceapps.write(pos);              // tell servo to go to position in variable 'pos' 
+                                                                                                                                    delay(15);                       // waits 15ms for the servo to reach the position 
+                                                                                                                                  } 
+                                                                                                                                  break;                          //Break
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      case'z': //Alarma
+      tone(47, NOTE_C8,1000); //Pin 47
+      delay(25);
+      noTone(47);
+      delay(75);
+      break;
+      } 
+}
